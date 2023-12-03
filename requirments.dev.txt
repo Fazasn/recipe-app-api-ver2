@@ -1,0 +1,1 @@
+flake8 lebih besar dari 3.9.2 dan lebih kecil dari 3.10

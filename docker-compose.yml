@@ -1,0 +1,32 @@
+version: "3.9" # bisa kasih command lhoo
+
+services: # Services name are used as DNS Hostname
+  app:
+    build:
+      context: .
+      args:
+        - DEV=true # untuk ngebuild dockerfile dengan argumen DEV=true
+    ports :
+        - "8000:8000" # port di host:port di container
+    volumes:
+      - ./app # Mounting current directory ke /app
+    command: sh -c "python manage.py runsaver 0.0.0.0:8000" # jalanin command ini ketika docker-compose up
+    environment:
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASSWORD=devpass
+    depends_on:
+      - db # ini untuk nunggu db jalan dulu baru jalanin app
+
+  db:
+    image: postgres:13 alpine
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=devpass
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data # ini untuk menyimpan data di volume
+
+volumes:
+  dev-db-data: # ini untuk membuat volume
