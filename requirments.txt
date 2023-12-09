@@ -1,2 +1,0 @@
-Django harus lebih besar dari 3.2.4 dan dibawah 3.3
-djangorestframework harus lebih besar dari 3.12.4 dan dibawah 3.13
