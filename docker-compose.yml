@@ -7,5 +7,5 @@ services: # Services name are used as DNS Hostname
     ports :
         - "8000:8000" # port di host:port di container
     volumes:
-      - ./app # Mounting current directory ke /app
+      - .:/app # Mounting current directory ke /app
     command: sh -c "python manage.py runsaver 0.0.0.0:8000" # jalanin command ini ketika docker-compose up
